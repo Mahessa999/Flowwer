@@ -9,14 +9,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onclick="PlayAudio()">
-    <audio id="musica1" autoplay>
-        <source src="Sal Priadi - Kita usahakan rumah.mp3"  type="audio/mpeg">
+<body>
+    <audio id="musica1" muted>
+        <source src="Sal Priadi - Kita usahakan rumah.mp3" type="audio/mpeg">
         <source src="Sal Priadi - Kita usahakan rumah.ogv" type="audio">
-
     </audio>
-
-
 
     <div class="sunflower">
         <div class="flower_wrapper">
@@ -62,12 +59,33 @@
     <div class="light light-11"></div>
     <div class="light light-12"></div>
 
-    <p id="text">FROM MAHESSA😽💞</p>
+    <p id="text">FROM MAHESSA:kissing_cat::revolving_hearts:</p>
+
+    <script>
+        // Optimize audio handling
+        function PlayAudio() {
+            const audio = document.getElementById("musica1");
+            if (audio) {
+                // Unmute and play
+                audio.muted = false;
+                audio.play().catch(error => {
+                    console.warn("Audio playback failed:", error);
+                });
+            }
+        }
+
+        // Listen for first user interaction
+        document.addEventListener('click', function() {
+            PlayAudio();
+        }, { once: true }); // Hanya trigger sekali
+
+        // Optional: Add keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'Enter') {
+                PlayAudio();
+            }
+        });
+    </script>
 </body>
-<script>
-    function PlayAudio() {
-        document.getElementById("musica1").play();
-    }
-</script>
 
 </html>
